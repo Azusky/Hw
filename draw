@@ -1,0 +1,22 @@
+
+def drawLine(length, direction):
+
+    if direction == "h":
+
+        print('-' * length)
+
+    elif direction == "v":
+
+        print('|\n' * length)
+
+
+
+
+
+a = int(input())
+
+b = input()
+
+
+
+drawLine(a, b)
