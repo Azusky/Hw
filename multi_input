@@ -1,0 +1,27 @@
+  
+def inputInt():
+    iNt = int(input())
+    return iNt
+
+
+def inputFloat():
+    fLo = float(input())
+    return fLo
+
+
+def inputBoolean():
+    bLo = bool(input())
+    return bLo
+
+
+b = inputInt()
+d = inputInt()
+print(b + d)
+
+a = inputFloat()
+c = inputFloat()
+print(a + c)
+
+e = inputBoolean()
+s = inputBoolean()
+print(e + s)
