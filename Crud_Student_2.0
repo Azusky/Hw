@@ -1,0 +1,88 @@
+
+student_list = [
+    {'name': "Ion Drop",
+     'spec': "IT",
+     'grade': 9.567, },
+
+    {'name': "Tatiana Hush",
+     'spec': "Filology",
+     'grade': 9.667, },
+
+    {'name': "Maria Nush",
+     'spec': "Filology",
+     'grade': 8.001, },
+]
+
+
+def menu():
+    option = -1
+    while option != 0:
+        print("\n\n")
+        print("#" * 10, "MENU", "#" * 10)
+        print("1. Show Student list")
+        print("2. Show Student Details")
+        print("3. Edit Student Details")
+        print("4. Delete Student")
+        print("0. Exit")
+        print("#" * 26)
+        print("Choose Option >")
+
+        option = int(input())
+
+        if option == 1:
+            read()
+        if option == 2:
+            details(std_Low_P())
+        if option == 3:
+            edit(std_Low_P())
+        if option == 4:
+            delete(std_Low_P())
+
+
+def std_Low_P():
+    name = input("Which student? > ")
+    for i in range(len(student_list)):
+        if student_list[i]['name'].lower() != name.lower():
+            continue
+        else:
+            print("Student Found!")
+            return i
+    print("STUDENT NOT FOUND!")
+
+
+def read():
+    for i in range(len(student_list)):
+        print(f" > {student_list[i]['name']:30s} ( {student_list[i]['spec']:10s})")
+
+
+def details(i):
+    if i is not None:
+        print(f" >>> {student_list[i]['name']:30s} ( {student_list[i]['spec']:10s} ) {student_list[i]['grade']:4.1f}")
+    else:
+        return
+
+
+def edit(i):
+    if i is not None:
+        new_name = input("ENTER THE NEW STUDENT`s NAME > ")
+        if new_name != "":
+            student_list[i]['name'] = new_name
+        new_spec = input("ENTER THE NEW STUDENT`s SPECIALTY > ")
+        if new_spec != "":
+            student_list[i]['spec'] = new_spec
+        new_grades = input("ENTER THE NEW STUDENT`s GRADE > ")
+        if new_grades != "":
+            student_list[i]['grade'] = float(new_grades)
+    else:
+        return
+
+
+def delete(i):
+    if i is not None:
+        print("  Removed!")
+        student_list.pop(i)
+    else:
+        return
+
+
+menu()
