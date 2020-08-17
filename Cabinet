@@ -1,0 +1,46 @@
+class Cabinet():
+    top = None
+    middle = None
+    bottom = None
+
+    def putOn(self, shelfName, thing):
+        if getattr(self, shelfName, None) is None:
+            setattr(self, shelfName, thing)
+        else:
+            print(f"Cannot place {thing} on top shelf, it is not empty!")
+
+    def takeFrom(self, shelfName):
+        if getattr(self, shelfName) is not None:
+            delattr(self, shelfName)
+        else:
+            print(f"Nothing to take! The {shelfName} shelf is empty")
+
+    def printSchema(self):
+        print("#" * 30)
+        if self.top is None:
+            self.top = " "
+            print(f"#{self.top:^27} #")
+        else:
+            print(f"#{self.top:^27} #")
+        print("#" * 30)
+        if self.middle is None:
+            self.middle = " "
+            print(f"#{self.middle:^27} #")
+        else:
+            print(f"#{self.middle:^27} #")
+        print("#" * 30)
+        if self.bottom is None:
+            self.bottom = " "
+            print(f"#{self.bottom:^27} #")
+        else:
+            print(f"#{self.bottom:^27} #")
+        print("#" * 30)
+
+
+cabinet1 = Cabinet()
+cabinet1.putOn("top", "Book")
+cabinet1.putOn("top", "Glass")
+cabinet1.putOn("middle", "Glass")
+cabinet1.putOn("bottom", "Lol")
+cabinet1.takeFrom("middle")
+cabinet1.printSchema()
