@@ -1,0 +1,39 @@
+import datetime
+
+
+class Waether:
+    def __init__(self, ye, mh, dy, nt, mt, sk):
+        self.data = datetime.date(ye, mh, dy)
+        self.temperature = {
+            "minTemp": nt,
+            "maxTemp": mt,
+            "avgTemp": (nt + mt) / 2   # Nu e cea mai buna aborbare))
+        }
+        self.sky = sk
+
+    def __str__(self):
+        data = f"WHEATER[{self.data.strftime('%d %b %Y')}]"
+        temp_Max = f":MaxTemp{self.temperature['maxTemp']:3}C,"
+        temp_Min = f" MinTemp{self.temperature['minTemp']:3}C,"
+        temp_Avg = f" AvgTemp {self.temperature['avgTemp']:3}C,"
+        con_sky = f" the sky is {self.sky} \n "
+        return data + temp_Max + temp_Min + temp_Avg + con_sky
+
+    def __gt__(self, other):
+        return self.temperature['maxTemp'] > other.temperature['maxTemp']
+
+    def __eq__(self, other):
+        return self.temperature['maxTemp'] == other.temperature['maxTemp'] and self.sky == other.sky
+
+
+todays_weather = Waether(2020, 8, 17, 10, 30, 'clear')
+tomorrows_weather = Waether(2020, 8, 18, 10, 28, 'clear')
+
+print(todays_weather)
+print(tomorrows_weather)
+
+if todays_weather > tomorrows_weather:
+    print("Today is hotter than it will be Tomorrow")
+
+if todays_weather == tomorrows_weather:
+    print("The weather tomorrow will be like Today!!")
