@@ -1,0 +1,20 @@
+class Label:
+    long = 32
+
+    def __init__(self, text):
+        self.text = text
+
+    def __str__(self):
+        return f"\n#{self.text:^{self.long}}#\n"
+
+
+class EmphasedLabel(Label):
+
+    def __str__(self):
+        return "\n" + "#" * (super().long + 2) + super().__str__() + "#" * (super().long + 2) + "\n"
+
+
+main_label = Label("Hello OOP")
+emp_label = EmphasedLabel("Another Label!!!")
+print(main_label)
+print(emp_label)
