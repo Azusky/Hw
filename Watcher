@@ -1,0 +1,37 @@
+from os import path
+from os import listdir
+from time import sleep
+from os import walk
+from fnmatch import fnmatch
+
+def observe(directory):
+    if not path.isdir(directory):
+        print("ERROR - directory not found!!!")
+        return
+
+    lastFileList = listdir(directory)
+    lastNameFile = []
+    while True:
+        fileList = listdir(directory)
+        nameFile = []
+        # if lastFileList != fileList:
+        ckec_list = ['*.jpg', '*.jpeg']
+        for dirname, _, filenames in walk(directory):
+            for filename in filenames:
+                for pattern in ckec_list:
+                    if fnmatch(filename, pattern):
+                        nameFile.append(filename)
+                        if lastNameFile == []: 
+                            lastNameFile = nameFile 
+                            
+        if lastNameFile != nameFile:
+            
+            print(">> somethig changed!")   
+                
+        
+        lastNameFile = nameFile 
+        lastFileList = fileList
+        sleep(0.2)
+
+
+observe("./images")
